@@ -1,11 +1,23 @@
 <?php
 /**
- * Template Name: Book the Space
+ * Template Name: Booking Request
  *
  * @package WordPress
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
  */
+
+remove_filter('the_content', 'wpautop');
+
+add_filter('the_content', 'selective_wpautop');
+
+function selective_wpautop($content) {
+	if (get_the_title() == 'Booking Request') {
+		return $content;
+	} else {
+		return wpautop($content);
+	}
+}
 
 get_header(); ?>
 

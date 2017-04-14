@@ -1,36 +1,36 @@
-<form id="booking_form" action="booking-request-submitted" method="post">
+<form class="booking_form" action="/index.php/booking-request-submitted" method="post">
 
 	Name of group, project or organisation:<br />
-	<input type="text" name="firstname"><br />
+	<input type="text" name="group_name"><br />
 	<br />
 
 	Name of contact person:<br />
-	<input type="text" name="firstname"><br />
+	<input type="text" name="contact_person"><br />
 	<br />
 
 	Contact phone number:<br />
-	<input type="text" name="firstname"><br />
+	<input type="text" name="contact_phone_number"><br />
 	<br />
 
 	How your project/group/… fits in with the ethos of the Common House*:<br />
-	<textarea name="message" rows="5"></textarea><br />
+	<pre><textarea name="project_fit" rows="5"></textarea></pre><br />
 	<br />
 
 	Type of booking (example: organising meeting, film screening, workshop, public meeting, closed meeting):<br />
-	<select name="cars">
-		<option value="volvo">childrens activity</option>
-		<option value="volvo">classes</option>
-		<option value="volvo">closed event</option>
-		<option value="volvo">common house meeting</option>
-		<option value="volvo">community services</option>
-		<option value="volvo">complementary healthcare</option>
-		<option value="volvo">film screening</option>
-		<option value="volvo">fundraiser</option>
-		<option value="volvo">organising meeting</option>
-		<option value="volvo">public meeting</option>
-		<option value="volvo">reading group</option>
-		<option value="volvo">social event</option>
-		<option value="volvo">workshop</option>
+	<select name="booking_type">
+		<option value="childrens_activity">childrens activity</option>
+		<option value="classes">classes</option>
+		<option value="closed_event">closed event</option>
+		<option value="common_house_meeting">common house meeting</option>
+		<option value="community_services">community services</option>
+		<option value="complementary_healthcare">complementary healthcare</option>
+		<option value="film_screening">film screening</option>
+		<option value="fundraiser">fundraiser</option>
+		<option value="organising_meeting">organising meeting</option>
+		<option value="public_meeting">public meeting</option>
+		<option value="reading_group">reading group</option>
+		<option value="social_event">social event</option>
+		<option value="workshop">workshop</option>
 	</select><br />
 	<br />
 
@@ -38,30 +38,30 @@
 	<br />
 
 	Event title:<br />
-	<input type="text" name="firstname"><br />
+	<input type="text" name="event_title"><br />
 	<br />
 
 	Event blurb:<br />
-	<input type="text" name="firstname"><br />
+	<input type="text" name="event_blurb"><br />
 	<br />
 
 	Date of booking:<br />
-	<input type="date" name="bday"><br />
+	<input type="date" name="booking_date"><br />
 	<br />
 
 	Start time (please include set-up time in your booking):<br />
-	<input type="time" name="usr_time"><br />
+	<input type="time" name="start_time"><br />
 	<br />
 
 	End time (please include clean-up time in your booking):<br />
-	<input type="time" name="usr_time"><br />
+	<input type="time" name="end_time"><br />
 	<br />
 
 	Do you plan to use the projector:<br />
-	<input class="narrow_width" type="checkbox" name="vehicle" value="Bike"><br />
+	<input class="narrow_element" type="checkbox" name="projector_use"><br />
 	<br />
 
-	<input class="narrow_width" type="submit" value="Request Booking">
+	<input class="narrow_element" type="submit" value="Request Booking">
 
 </form>
 

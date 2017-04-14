@@ -3,13 +3,13 @@ Theme Name: Automated Booking
 Template: twentytwelve
 */
 
-#booking_form input,
-#booking_form textarea,
-#booking_form select {
+.booking_form input,
+.booking_form textarea,
+.booking_form select {
 	width: 100%;
 	max-width: 100%;
 }
 
-#booking_form .narrow_width {
+.booking_form .narrow_element {
 	width: initial;
 }
