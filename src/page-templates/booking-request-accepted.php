@@ -19,6 +19,8 @@ get_header(); ?>
 			
 			<?php
 				
+				// DELETE BOOKING REQUEST PAGE
+				
 				$prev_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 				if ($prev_url) {
 					$prev_path = str_replace(home_url(), '', $prev_url);
@@ -26,33 +28,72 @@ get_header(); ?>
 					wp_delete_post($page->ID, true);
 				}
 				
+				// CREATE EVENT IN THE EVENTS CALENDAR
+				
+				$start_time = $_POST['start_time'];
+				if (intval(substr($start_time, 0, 2)) <= 11) {
+					$start_hour = substr($start_time, 0, 2);
+					$start_meridian = 'am';
+				} else {
+					$start_hour = strval(intval(substr($start_time, 0, 2)) - 12);
+					$start_meridian = 'pm';
+				}
+				if ($start_hour == 0) {
+					$start_hour = 12;
+				}
+				$start_minute = substr($start_time, 3, 2);
+				
+				$end_time = $_POST['end_time'];
+				if (intval(substr($end_time, 0, 2)) <= 11) {
+					$end_hour = substr($end_time, 0, 2);
+					$end_meridian = 'am';
+				} else {
+					$end_hour = strval(intval(substr($end_time, 0, 2)) - 12);
+					$end_meridian = 'pm';
+				}
+				if ($end_hour == 0) {
+					$end_hour = 12;
+				}
+				$end_minute = substr($end_time, 3, 2);
+				
 				$args = array(
-                   'post_title'			=> 'My post',
-                   'post_content'		=> 'This is my post.',
+                   'post_title'			=> $_POST['event_title'],
+                   'post_content'		=> $_POST['event_blurb'],
                    'post_status'		=> 'publish',
                    'post_author'		=> 1,
-                   'EventStartDate'		=> '2017-04-15',
-                   'EventEndDate'		=> '2017-04-15',
-                   'EventStartHour'		=> '2',
-                   'EventStartMinute'	=> '29',
-                   'EventStartMeridian'	=> 'pm',
-                   'EventEndHour'		=> '4',
-                   'EventEndMinute'		=> '20',
-                   'EventEndMeridian'	=> 'pm',
+                   'EventStartDate'		=> $_POST['booking_date'],
+                   'EventEndDate'		=> $_POST['booking_date'],
+                   'EventStartHour'		=> $start_hour,
+                   'EventStartMinute'	=> $start_minute,
+                   'EventStartMeridian'	=> $start_meridian,
+                   'EventEndHour'		=> $end_hour,
+                   'EventEndMinute'		=> $end_minute,
+                   'EventEndMeridian'	=> $end_meridian,
                    'Venue' => array(
-                         'Venue'	=> 'test',
-                         'Country'	=> 'US',
-                         'Address'	=> '1 W. Washington Ave.',
-                         'City'		=> 'Madison',
-                         'State'	=> 'WI'     
+                         'Venue'	=> 'Common House',
+                         'Country'	=> 'United Kingdom',
+                         'Address'	=> 'Unit E, 5 Pundersons Gardens, Bethnal Green, London, E29QG'
                    ),
                    'Organizer' => array(
-                       'Organizer'	=> 'Jonah West',
-                       'Email'		=> 'me@me.com'   
+                       'Organizer'	=> $_POST['group_name'],
+                       'Email'		=> $_POST['contact_email']   
                    )
                 );
-				tribe_create_event($args);
+				$event_id = tribe_create_event($args);
+				
+				$event_categories = get_terms(array(
+						'taxonomy'		=> 'tribe_events_cat',
+						'hide_empty'	=> false
+					));
+				foreach ($event_categories as &$event_category) {
+					if ($event_category->slug == $_POST['booking_type']) {
+						wp_set_post_terms($event_id, array($event_category->term_id), 'tribe_events_cat');
+						break;
+					}
+                }
                 
+				// EMAIL CONTACT EMAIL ADDRESS
+				
 				$to = $_POST['contact_email'];
                 $subject = 'The Common House';
                 $message = 'Your booking request has been accepted and added to the events calendar at https://automatedbooking.000webhostapp.com/whats-on/.';

@@ -19,6 +19,8 @@ get_header(); ?>
 			
 			<?php
 				
+				// CREATE BOOKING REQUEST PAGE
+				
 				$post_content = '
 <form class="booking_form" method="post">
 
@@ -43,21 +45,7 @@ get_header(); ?>
 	<br />
 
 	Type of booking (example: organising meeting, film screening, workshop, public meeting, closed meeting):<br />
-	<select name="booking_type" disabled>
-		<option value="childrens_activity"' . ($_POST['booking_type'] == 'childrens_activity' ? ' selected' : '') . '>childrens activity</option>
-		<option value="classes"' . ($_POST['booking_type'] == 'classes' ? ' selected' : '') . '>classes</option>
-		<option value="closed_event"' . ($_POST['booking_type'] == 'closed_event' ? ' selected' : '') . '>closed event</option>
-		<option value="common_house_meeting"' . ($_POST['booking_type'] == 'common_house_meeting' ? ' selected' : '') . '>common house meeting</option>
-		<option value="community_services"' . ($_POST['booking_type'] == 'community_services' ? ' selected' : '') . '>community services</option>
-		<option value="complementary_healthcare"' . ($_POST['booking_type'] == 'complementary_healthcare' ? ' selected' : '') . '>complementary healthcare</option>
-		<option value="film_screening"' . ($_POST['booking_type'] == 'film_screening' ? ' selected' : '') . '>film screening</option>
-		<option value="fundraiser"' . ($_POST['booking_type'] == 'fundraiser' ? ' selected' : '') . '>fundraiser</option>
-		<option value="organising_meeting"' . ($_POST['booking_type'] == 'organising_meeting' ? ' selected' : '') . '>organising meeting</option>
-		<option value="public_meeting"' . ($_POST['booking_type'] == 'public_meeting' ? ' selected' : '') . '>public meeting</option>
-		<option value="reading_group"' . ($_POST['booking_type'] == 'reading_group' ? ' selected' : '') . '>reading group</option>
-		<option value="social_event"' . ($_POST['booking_type'] == 'social_event' ? ' selected' : '') . '>social event</option>
-		<option value="workshop"' . ($_POST['booking_type'] == 'workshop' ? ' selected' : '') . '>workshop</option>
-	</select><br />
+	<input type="text" name="booking_type" value="' . $_POST['booking_type'] . '" readonly><br />
 	<br />
 
 	If the event is open to the public to attend please include an event title and blurb for the website/blog (if you are on Facebook and want to promote your event please tag Common House in it so it appears on our timeline):<br />
@@ -107,12 +95,16 @@ get_header(); ?>
 				);
 				$new_page_id = wp_insert_post($post_data, $error_obj);
                 
+				// EMAIL CONTACT EMAIL ADDRESS
+				
 				$to = $_POST['contact_email'];
                 $subject = 'The Common House';
                 $message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
                 $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 				wp_mail($to, $subject, $message, $headers);
                 
+				// EMAIL ADMIN EMAIL ADDRESS
+				
 				$to = 'automatedbooking@gmail.com';
                 $subject = 'Booking Request';
                 $message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.';

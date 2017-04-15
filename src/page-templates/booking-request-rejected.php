@@ -19,12 +19,16 @@ get_header(); ?>
 			
 			<?php
 				
+				// DELETE BOOKING REQUEST PAGE
+				
 				$prev_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
 				if ($prev_url) {
 					$prev_path = str_replace(home_url(), '', $prev_url);
 					$page = get_page_by_path($prev_path);
 					wp_delete_post($page->ID, true);
 				}
+				
+				// EMAIL CONTACT EMAIL ADDRESS
 				
 				$to = $_POST['contact_email'];
                 $subject = 'The Common House';

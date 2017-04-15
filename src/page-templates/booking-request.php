@@ -7,6 +7,8 @@
  * @since Twenty Twelve 1.0
  */
 
+// REMOVE FILTER SO THAT TEXT AREA DOESN'T CONTAIN BR TAGS
+
 remove_filter('the_content', 'wpautop');
 
 add_filter('the_content', 'selective_wpautop');
