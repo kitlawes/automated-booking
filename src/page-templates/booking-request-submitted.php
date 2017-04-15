@@ -30,6 +30,10 @@ get_header(); ?>
 	<input type="text" name="contact_person" value="' . $_POST['contact_person'] . '" readonly><br />
 	<br />
 
+	Contact e-mail:<br />
+	<input type="text" name="contact_email" value="' . $_POST['contact_email'] . '" readonly><br />
+	<br />
+
 	Contact phone number:<br />
 	<input type="text" name="contact_phone_number" value="' . $_POST['contact_phone_number'] . '" readonly><br />
 	<br />
@@ -103,10 +107,16 @@ get_header(); ?>
 				);
 				$new_page_id = wp_insert_post($post_data, $error_obj);
                 
+				$to = $_POST['contact_email'];
+                $subject = 'The Common House';
+                $message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
+                $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+				wp_mail($to, $subject, $message, $headers);
+                
 				$to = 'automatedbooking@gmail.com';
-                $subject = 'The subject';
-                $message = 'The email body content ' . get_permalink($new_page_id);
-                $headers = array('Content-Type: text/html; charset=UTF-8');
+                $subject = 'Booking Request';
+                $message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id);
+                $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 				wp_mail($to, $subject, $message, $headers);
 				
 			?>

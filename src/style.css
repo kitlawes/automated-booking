@@ -8,6 +8,7 @@ Template: twentytwelve
 .booking_form select {
 	width: 100%;
 	max-width: 100%;
+	color: black;
 }
 
 .booking_form .narrow_element {
