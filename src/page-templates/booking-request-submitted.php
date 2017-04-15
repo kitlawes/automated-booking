@@ -20,7 +20,7 @@ get_header(); ?>
 			<?php
 				
 				$post_content = '
-<form class="booking_form" action="booking-request-submitted" method="post">
+<form class="booking_form" method="post">
 
 	Name of group, project or organisation:<br />
 	<input type="text" name="group_name" value="' . $_POST['group_name'] . '" readonly><br />
@@ -87,8 +87,8 @@ get_header(); ?>
 	<input class="narrow_element" type="checkbox" name="projector_use" readonly' . ($_POST['projector_use'] == 'on' ? ' checked' : '') . '><br />
 	<br />
 
-	<input class="narrow_element" type="submit" value="Accept Booking Request">
-	<input class="narrow_element" type="submit" value="Reject Booking Request">
+	<button class="narrow_element" type="submit" formaction="/booking-request-accepted">Accept Booking Request</button>
+    <button class="narrow_element" type="submit" formaction="/booking-request-rejected">Reject Booking Request</button>
 
 </form>
 <br />
@@ -115,7 +115,7 @@ get_header(); ?>
                 
 				$to = 'automatedbooking@gmail.com';
                 $subject = 'Booking Request';
-                $message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id);
+                $message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.';
                 $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 				wp_mail($to, $subject, $message, $headers);
 				
