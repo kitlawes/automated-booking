@@ -76,14 +76,14 @@ get_header(); ?>
 	<br />
 
 	<button class="narrow_element" type="submit" formaction="/booking-request-accepted">Accept Booking Request</button>
-    <button class="narrow_element" type="submit" formaction="/booking-request-rejected">Reject Booking Request</button>
+	<button class="narrow_element" type="submit" formaction="/booking-request-rejected">Reject Booking Request</button>
 
 </form>
 <br />
 
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
 				';
-				
+
 				$post_data = array(
 					'post_title'    => 'Booking Request',
 					'post_content'  => $post_content,
@@ -93,22 +93,24 @@ get_header(); ?>
 					'post_category' => array(1,2),
 					'page_template' => 'page-templates/booking-request.php'
 				);
+				// Remove filters which remove <input> elements from the form
+				remove_all_filters("content_save_pre");
 				$new_page_id = wp_insert_post($post_data, $error_obj);
                 
 				// EMAIL CONTACT EMAIL ADDRESS
 				
 				$to = $_POST['contact_email'];
-                $subject = 'The Common House';
-                $message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
-                $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+				$subject = 'The Common House';
+				$message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
+				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 				wp_mail($to, $subject, $message, $headers);
                 
 				// EMAIL ADMIN EMAIL ADDRESS
 				
 				$to = 'automatedbooking@gmail.com';
-                $subject = 'Booking Request';
-                $message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.';
-                $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+				$subject = 'Booking Request';
+				$message = 'A booking request has been made. The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.';
+				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 				wp_mail($to, $subject, $message, $headers);
 				
 			?>

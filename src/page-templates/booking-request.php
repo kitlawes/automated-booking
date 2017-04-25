@@ -7,19 +7,8 @@
  * @since Twenty Twelve 1.0
  */
 
-// REMOVE FILTER SO THAT TEXT AREA DOESN'T CONTAIN BR TAGS
-
+// Remove filter so that text area doesn't contain <br> elements
 remove_filter('the_content', 'wpautop');
-
-add_filter('the_content', 'selective_wpautop');
-
-function selective_wpautop($content) {
-	if (get_the_title() == 'Booking Request') {
-		return $content;
-	} else {
-		return wpautop($content);
-	}
-}
 
 get_header(); ?>
 
