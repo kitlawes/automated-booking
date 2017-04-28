@@ -8,20 +8,12 @@
  */
 
 get_header(); ?>
-
-	<div id="primary" class="site-content">
-		<div id="content" role="main">
+	
+	<?php
 		
-			<?php while ( have_posts() ) : the_post(); ?>
-				<?php get_template_part( 'content', 'page' ); ?>
-				<?php comments_template( '', true ); ?>
-			<?php endwhile; // end of the loop. ?>
-			
-			<?php
-				
-				// CREATE BOOKING REQUEST PAGE
-				
-				$post_content = '
+		// CREATE BOOKING REQUEST PAGE
+		
+		$post_content = '
 <form class="booking_form" method="post">
 
 	Name of group, project or organisation:<br />
@@ -96,36 +88,36 @@ get_header(); ?>
 <br />
 
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
-				';
+		';
 
-				$post_data = array(
-					'post_title'    => 'Booking Request',
-					'post_content'  => $post_content,
-					'post_status'   => 'publish',
-					'post_type'     => 'page',
-					'post_author'   => '1',
-					'post_category' => array(1,2),
-					'page_template' => 'page-templates/booking-request.php',
-					'post_password' => 'CommonHouse123'
-				);
-				// Remove filters which remove <input> elements from the form
-				remove_all_filters("content_save_pre");
-				$new_page_id = wp_insert_post($post_data, $error_obj);
-                
-				// EMAIL CONTACT EMAIL ADDRESS
-				
-				$to = $_POST['contact_email'];
-				$subject = 'The Common House';
-				$message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
-				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-				//wp_mail($to, $subject, $message, $headers);
-                
-				// EMAIL ADMIN EMAIL ADDRESS
-				
-				$to = 'automatedbooking@gmail.com';
-				$subject = 'Booking Request';
+		$post_data = array(
+			'post_title'    => 'Booking Request',
+			'post_content'  => $post_content,
+			'post_status'   => 'publish',
+			'post_type'     => 'page',
+			'post_author'   => '1',
+			'post_category' => array(1,2),
+			'page_template' => 'page-templates/booking-request.php',
+			'post_password' => 'CommonHouse123'
+		);
+		// Remove filters which remove <input> elements from the form
+		remove_all_filters("content_save_pre");
+		$new_page_id = wp_insert_post($post_data, $error_obj);
+		
+		// EMAIL CONTACT EMAIL ADDRESS
+		
+		$to = $_POST['contact_email'];
+		$subject = 'The Common House';
+		$message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
+		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+		//wp_mail($to, $subject, $message, $headers);
+		
+		// EMAIL ADMIN EMAIL ADDRESS
+		
+		$to = 'automatedbooking@gmail.com';
+		$subject = 'Booking Request';
 
-				$message = 'A booking request has been made (see below). The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.
+		$message = 'A booking request has been made (see below). The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.
 
 Name of group, project or organisation:
 ' . $_POST['group_name'] . '
@@ -166,12 +158,20 @@ Do you plan to use the projector:
 ' . ($_POST['projector_use'] == 'on' ? 'Yes' : 'No') . '
 
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
-			  ';
-
-				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-				//wp_mail($to, $subject, $message, $headers);
-				
-			?>
+		';
+		
+		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+		//wp_mail($to, $subject, $message, $headers);
+		
+	?>
+	
+	<div id="primary" class="site-content">
+		<div id="content" role="main">
+		
+			<?php while ( have_posts() ) : the_post(); ?>
+				<?php get_template_part( 'content', 'page' ); ?>
+				<?php comments_template( '', true ); ?>
+			<?php endwhile; // end of the loop. ?>
 			
 		</div><!-- #content -->
 	</div><!-- #primary -->
