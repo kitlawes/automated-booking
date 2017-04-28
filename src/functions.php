@@ -29,6 +29,8 @@ function my_theme_enqueue_scripts() {
 	wp_enqueue_script('globalize');
 	wp_register_script('globalize.culture.de-DE', get_stylesheet_directory_uri() . '/lib/globalize.culture.de-DE.js', array('jquery', 'jquery-ui', 'globalize'), '1.0', false);
 	wp_enqueue_script('globalize.culture.de-DE');
+	wp_register_script('datepicker-widget', get_stylesheet_directory_uri() . '/js/datepicker-widget.js', array('jquery', 'jquery-ui'), '1.0', false);
+	wp_enqueue_script('datepicker-widget');
 	wp_register_script('timespinner-widget', get_stylesheet_directory_uri() . '/js/timespinner-widget.js', array('jquery', 'jquery-ui', 'globalize', 'globalize.culture.de-DE'), '1.0', false);
 	wp_enqueue_script('timespinner-widget');
 	
