@@ -105,7 +105,8 @@ get_header(); ?>
 					'post_type'     => 'page',
 					'post_author'   => '1',
 					'post_category' => array(1,2),
-					'page_template' => 'page-templates/booking-request.php'
+					'page_template' => 'page-templates/booking-request.php',
+					'post_password' => 'CommonHouse123'
 				);
 				// Remove filters which remove <input> elements from the form
 				remove_all_filters("content_save_pre");
