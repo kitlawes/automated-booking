@@ -24,6 +24,6 @@ jQuery(document).ready(function($) {
 		}
 	});
 	
-	$(".timespinner").spinner();
+	$(".timespinner").timespinner();
 	
 });

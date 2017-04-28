@@ -3,10 +3,6 @@ Theme Name: Automated Booking
 Template: twentytwelve
 */
 
-.booking_form {
-	width: 500px;
-}
-
 .booking_form input,
 .booking_form textarea,
 .booking_form select {
@@ -19,7 +15,10 @@ Template: twentytwelve
 	width: initial;
 }
 
-.timespinner {
-	width: 80%;
-	max-width: 80%;
+.booking_form .ui-spinner {
+	width: 100%;
+}
+
+.booking_form .timespinner {
+	width: calc(100% - 2.4em);
 }
