@@ -103,7 +103,7 @@ get_header(); ?>
 				$subject = 'The Common House';
 				$message = 'Thank you for your booking request. You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.';
 				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-				wp_mail($to, $subject, $message, $headers);
+				//wp_mail($to, $subject, $message, $headers);
                 
 				// EMAIL ADMIN EMAIL ADDRESS
 				
@@ -154,7 +154,7 @@ Do you plan to use the projector:
 			  ';
 
 				$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-				wp_mail($to, $subject, $message, $headers);
+				//wp_mail($to, $subject, $message, $headers);
 				
 			?>
 			

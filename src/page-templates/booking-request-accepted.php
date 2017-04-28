@@ -98,7 +98,7 @@ get_header(); ?>
                 $subject = 'The Common House';
                 $message = 'Your booking request has been accepted and added to the events calendar at https://automatedbooking.000webhostapp.com/whats-on/.';
                 $headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-				wp_mail($to, $subject, $message, $headers);
+				//wp_mail($to, $subject, $message, $headers);
 				
 			?>
 			
