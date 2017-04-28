@@ -25,54 +25,68 @@ get_header(); ?>
 <form class="booking_form" method="post">
 
 	Name of group, project or organisation:<br />
-	<input type="text" name="group_name" value="' . $_POST['group_name'] . '" readonly><br />
+	<input type="text" name="group_name" value="' . $_POST['group_name'] . '"><br />
 	<br />
 
 	Name of contact person:<br />
-	<input type="text" name="contact_person" value="' . $_POST['contact_person'] . '" readonly><br />
+	<input type="text" name="contact_person" value="' . $_POST['contact_person'] . '"><br />
 	<br />
 
 	Contact e-mail:<br />
-	<input type="text" name="contact_email" value="' . $_POST['contact_email'] . '" readonly><br />
+	<input type="text" name="contact_email" value="' . $_POST['contact_email'] . '"><br />
 	<br />
 
 	Contact phone number:<br />
-	<input type="text" name="contact_phone_number" value="' . $_POST['contact_phone_number'] . '" readonly><br />
+	<input type="text" name="contact_phone_number" value="' . $_POST['contact_phone_number'] . '"><br />
 	<br />
 
 	How your project/group/… fits in with the ethos of the Common House*:<br />
-	<textarea name="project_fit" rows="5" readonly>' . $_POST['project_fit'] . '</textarea><br />
+	<textarea name="project_fit" rows="5">' . $_POST['project_fit'] . '</textarea><br />
 	<br />
 
 	Type of booking (example: organising meeting, film screening, workshop, public meeting, closed meeting):<br />
-	<input type="text" name="booking_type" value="' . $_POST['booking_type'] . '" readonly><br />
+	<select name="booking_type" >
+		<option value="childrens-activity" ' . ($_POST['booking_type'] == 'childrens-activity' ? ' selected' : '') . '>children\'s activity</option>
+		<option value="classes" ' . ($_POST['booking_type'] == 'classes' ? ' selected' : '') . '>classes</option>
+		<option value="closed-event" ' . ($_POST['booking_type'] == 'closed-event' ? ' selected' : '') . '>closed event</option>
+		<option value="common-house-meeting" ' . ($_POST['booking_type'] == 'common-house-meeting' ? ' selected' : '') . '>common house meeting</option>
+		<option value="community-services" ' . ($_POST['booking_type'] == 'community-services' ? ' selected' : '') . '>community services</option>
+		<option value="complementary-healthcare" ' . ($_POST['booking_type'] == 'complementary-healthcare' ? ' selected' : '') . '>complementary healthcare</option>
+		<option value="film-screening" ' . ($_POST['booking_type'] == 'film-screening' ? ' selected' : '') . '>film screening</option>
+		<option value="fundraiser" ' . ($_POST['booking_type'] == 'fundraiser' ? ' selected' : '') . '>fundraiser</option>
+		<option value="organising-meeting" ' . ($_POST['booking_type'] == 'organising-meeting' ? ' selected' : '') . '>organising meeting</option>
+		<option value="public-meeting" ' . ($_POST['booking_type'] == 'public-meeting' ? ' selected' : '') . '>public meeting</option>
+		<option value="reading-group" ' . ($_POST['booking_type'] == 'reading-group' ? ' selected' : '') . '>reading group</option>
+		<option value="social-event" ' . ($_POST['booking_type'] == 'social-event' ? ' selected' : '') . '>social event</option>
+		<option value="workshop" ' . ($_POST['booking_type'] == 'workshop' ? ' selected' : '') . '>workshop</option>
+	</select><br />
 	<br />
 
 	If the event is open to the public to attend please include an event title and blurb for the website/blog (if you are on Facebook and want to promote your event please tag Common House in it so it appears on our timeline):<br />
 	<br />
 
 	Event title:<br />
-	<input type="text" name="event_title" value="' . $_POST['event_title'] . '" readonly><br />
+	<input type="text" name="event_title" value="' . $_POST['event_title'] . '"><br />
 	<br />
 
 	Event blurb:<br />
-	<input type="text" name="event_blurb" value="' . $_POST['event_blurb'] . '" readonly><br />
+	<input type="text" name="event_blurb" value="' . $_POST['event_blurb'] . '"><br />
 	<br />
 
 	Date of booking:<br />
-	<input class="datepicker" type="text" name="booking_date" value="' . $_POST['booking_date'] . '" readonly><br />
+	<input class="datepicker" type="text" name="booking_date" value="' . $_POST['booking_date'] . '"><br />
 	<br />
 
 	Start time (please include set-up time in your booking):<br />
-	<input class="timespinner" name="start_time" value="' . $_POST['start_time'] . '" readonly><br />
+	<input class="timespinner" name="start_time" value="' . $_POST['start_time'] . '"><br />
 	<br />
 
 	End time (please include clean-up time in your booking):<br />
-	<input class="timespinner" name="end_time" value="' . $_POST['end_time'] . '" readonly><br />
+	<input class="timespinner" name="end_time" value="' . $_POST['end_time'] . '"><br />
 	<br />
 
 	Do you plan to use the projector:<br />
-	<input class="narrow_element" type="checkbox" name="projector_use" readonly' . ($_POST['projector_use'] == 'on' ? ' checked' : '') . '><br />
+	<input class="narrow_element" type="checkbox" name="projector_use" ' . ($_POST['projector_use'] == 'on' ? ' checked' : '') . '><br />
 	<br />
 
 	<button class="narrow_element" type="submit" formaction="/booking-request-accepted">Accept Booking Request</button>

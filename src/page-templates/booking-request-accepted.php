@@ -64,7 +64,6 @@ get_header(); ?>
                    )
                 );
 				$event_id = tribe_create_event($args);
-				print_r($args);
 				
 				$event_categories = get_terms(array(
 						'taxonomy'		=> 'tribe_events_cat',
