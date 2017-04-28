@@ -33,6 +33,8 @@ function my_theme_enqueue_scripts() {
 	wp_enqueue_script('datepicker-widget');
 	wp_register_script('timespinner-widget', get_stylesheet_directory_uri() . '/js/timespinner-widget.js', array('jquery', 'jquery-ui', 'globalize', 'globalize.culture.de-DE'), '1.0', false);
 	wp_enqueue_script('timespinner-widget');
+	wp_register_script('booking-form', get_stylesheet_directory_uri() . '/js/booking-form.js', array('jquery'), '1.0', false);
+	wp_enqueue_script('booking-form');
 	
 }
 
