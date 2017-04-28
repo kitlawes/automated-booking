@@ -1,6 +1,6 @@
 <?php
 /**
- * Template Name: Process Booking Request
+ * Template Name: Process Booking Request Admin
  *
  * @package WordPress
  * @subpackage Twenty_Twelve
@@ -53,7 +53,7 @@ foreach ($events as $event) {
 // REDIRECT TO RELEVANT PAGE IF BOOKING REQUEST CLASHES
 
 if ($calendar_clash) {
-	header("Location: " . get_site_url() . "/booking-request-clashes");
+	header("Location: " . get_site_url() . "/booking-request-clashes-admin");
 	exit();
 }
 
@@ -61,11 +61,16 @@ get_header(); ?>
 	
 	<!-- SUBMIT POST REQUEST CONTAINING FORM INPUT TO RELEVENT PAGE -->
 	
-	<form id="booking_form" action="/booking-request-submitted" method="post">
+	<form id="booking_form" action="/booking-request-accepted" method="post">
 	<?php
+	
 		foreach ($_POST as $name => $value) {
 			echo '<input type="hidden" name="' . htmlentities($name) . '" value="' . htmlentities($value) . '">';
 		}
+		
+		$previous_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
+		echo '<input type="hidden" name="previous_url" value="' . $previous_url . '">';
+		
 	?>
 	</form>
 	<script type="text/javascript">

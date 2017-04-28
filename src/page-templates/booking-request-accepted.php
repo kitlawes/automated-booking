@@ -13,10 +13,10 @@ get_header(); ?>
 		
 		// DELETE BOOKING REQUEST PAGE
 		
-		$prev_url = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : '';
-		if ($prev_url) {
-			$prev_path = str_replace(home_url(), '', $prev_url);
-			$page = get_page_by_path($prev_path);
+		$previous_url = $_POST['previous_url'];
+		if ($previous_url) {
+			$previous_path = str_replace(home_url(), '', $previous_url);
+			$page = get_page_by_path($previous_path);
 			wp_delete_post($page->ID, true);
 		}
 		
@@ -32,13 +32,15 @@ get_header(); ?>
 		$end_minute = substr($end_time, strrpos($end_time, ':') + 1, 2);
 		$end_meridian = substr($end_time, strrpos($end_time, ' ') + 1, 2);
 		
+		$booking_date = substr($_POST['booking_date'], 6, 4) . '-' . substr($_POST['booking_date'], 0, 2) . '-' . substr($_POST['booking_date'], 3, 2);
+		
 		$args = array(
 		   'post_title'			=> $_POST['event_title'],
 		   'post_content'		=> $_POST['event_blurb'],
 		   'post_status'		=> 'publish',
 		   'post_author'		=> 1,
-		   'EventStartDate'		=> $_POST['booking_date'],
-		   'EventEndDate'		=> $_POST['booking_date'],
+		   'EventStartDate'		=> $booking_date,
+		   'EventEndDate'		=> $booking_date,
 		   'EventStartHour'		=> $start_hour,
 		   'EventStartMinute'	=> $start_minute,
 		   'EventStartMeridian'	=> $start_meridian,
@@ -74,7 +76,7 @@ get_header(); ?>
 		$subject = 'The Common House';
 		$message = 'Your booking request has been accepted and added to the events calendar at https://automatedbooking.000webhostapp.com/whats-on/.';
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-		//wp_mail($to, $subject, $message, $headers);
+		wp_mail($to, $subject, $message, $headers);
 		
 	?>
 

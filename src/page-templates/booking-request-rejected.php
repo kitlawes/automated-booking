@@ -26,7 +26,7 @@ get_header(); ?>
 		$subject = 'The Common House';
 		$message = 'Your booking request has been rejected. You can make another booking request at https://automatedbooking.000webhostapp.com/index.php/book-the-space/.';
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
-		//wp_mail($to, $subject, $message, $headers);
+		wp_mail($to, $subject, $message, $headers);
 		
 	?>
 
