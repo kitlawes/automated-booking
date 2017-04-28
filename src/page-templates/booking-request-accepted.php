@@ -31,30 +31,14 @@ get_header(); ?>
 				// CREATE EVENT IN THE EVENTS CALENDAR
 				
 				$start_time = $_POST['start_time'];
-				if (intval(substr($start_time, 0, 2)) <= 11) {
-					$start_hour = substr($start_time, 0, 2);
-					$start_meridian = 'am';
-				} else {
-					$start_hour = strval(intval(substr($start_time, 0, 2)) - 12);
-					$start_meridian = 'pm';
-				}
-				if ($start_hour == 0) {
-					$start_hour = 12;
-				}
-				$start_minute = substr($start_time, 3, 2);
+				$start_hour = substr($start_time, 0, strrpos($start_time, ':'));
+				$start_minute = substr($start_time, strrpos($start_time, ':') + 1, 2);
+				$start_meridian = substr($start_time, strrpos($start_time, ' ') + 1, 2);
 				
 				$end_time = $_POST['end_time'];
-				if (intval(substr($end_time, 0, 2)) <= 11) {
-					$end_hour = substr($end_time, 0, 2);
-					$end_meridian = 'am';
-				} else {
-					$end_hour = strval(intval(substr($end_time, 0, 2)) - 12);
-					$end_meridian = 'pm';
-				}
-				if ($end_hour == 0) {
-					$end_hour = 12;
-				}
-				$end_minute = substr($end_time, 3, 2);
+				$end_hour = substr($end_time, 0, strrpos($end_time, ':'));
+				$end_minute = substr($end_time, strrpos($end_time, ':') + 1, 2);
+				$end_meridian = substr($end_time, strrpos($end_time, ' ') + 1, 2);
 				
 				$args = array(
                    'post_title'			=> $_POST['event_title'],
@@ -80,6 +64,7 @@ get_header(); ?>
                    )
                 );
 				$event_id = tribe_create_event($args);
+				print_r($args);
 				
 				$event_categories = get_terms(array(
 						'taxonomy'		=> 'tribe_events_cat',

@@ -60,15 +60,15 @@ get_header(); ?>
 	<br />
 
 	Date of booking:<br />
-	<input type="date" name="booking_date" value="' . $_POST['booking_date'] . '" readonly><br />
+	<input class="datepicker" type="text" name="booking_date" value="' . $_POST['booking_date'] . '" readonly><br />
 	<br />
 
 	Start time (please include set-up time in your booking):<br />
-	<input type="time" name="start_time" value="' . $_POST['start_time'] . '" readonly><br />
+	<input class="timespinner" name="start_time" value="' . $_POST['start_time'] . '" readonly><br />
 	<br />
 
 	End time (please include clean-up time in your booking):<br />
-	<input type="time" name="end_time" value="' . $_POST['end_time'] . '" readonly><br />
+	<input class="timespinner" name="end_time" value="' . $_POST['end_time'] . '" readonly><br />
 	<br />
 
 	Do you plan to use the projector:<br />
