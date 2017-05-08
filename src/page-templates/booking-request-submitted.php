@@ -89,9 +89,22 @@ get_header(); ?>
 
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
 		';
-
+		
+		global $wpdb;
+		$table = $wpdb->prefix . "booking_request_count";
+		$sql = "CREATE TABLE IF NOT EXISTS $table (`count` INTEGER)";
+		$wpdb->query($sql);
+		$count = $wpdb->get_results("SELECT * FROM $table;", OBJECT);
+		if (empty($count)) {
+			$wpdb->insert($table, array('count' => 0));
+		}
+		$count = $wpdb->get_results("SELECT * FROM $table;", OBJECT);
+		$wpdb->update($table, array('count' => $count[0]->count + 1), array('count' => $count[0]->count));
+		$count = $wpdb->get_results("SELECT * FROM $table;", OBJECT);
+		$post_name = 'booking-request-' . $count[0]->count;
 		$post_data = array(
 			'post_title'    => 'Booking Request',
+			'post_name'		=> $post_name,
 			'post_content'  => $post_content,
 			'post_status'   => 'publish',
 			'post_type'     => 'page',
