@@ -1,4 +1,4 @@
-<form class="booking_form" action="/process-booking-request" method="post">
+<form id="booking_form" onsubmit="return validateBookingRequest()" action="/process-booking-request" method="post">
 	
 	Name of group, project or organisation:<br />
 	<input type="text" name="group_name"><br />

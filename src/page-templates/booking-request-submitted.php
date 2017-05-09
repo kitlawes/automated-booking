@@ -14,7 +14,7 @@ get_header(); ?>
 		// CREATE BOOKING REQUEST PAGE
 		
 		$post_content = '
-<form class="booking_form" method="post">
+<form id="booking_form" method="post">
 
 	Name of group, project or organisation:<br />
 	<input type="text" name="group_name" value="' . $_POST['group_name'] . '"><br />
@@ -90,6 +90,7 @@ get_header(); ?>
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
 		';
 		
+		// Get unique booking request id from database
 		global $wpdb;
 		$table = $wpdb->prefix . "booking_request_count";
 		$sql = "CREATE TABLE IF NOT EXISTS $table (`count` INTEGER)";
@@ -102,6 +103,7 @@ get_header(); ?>
 		$wpdb->update($table, array('count' => $count[0]->count + 1), array('count' => $count[0]->count));
 		$count = $wpdb->get_results("SELECT * FROM $table;", OBJECT);
 		$post_name = 'booking-request-' . $count[0]->count;
+		
 		$post_data = array(
 			'post_title'    => 'Booking Request',
 			'post_name'		=> $post_name,
