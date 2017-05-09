@@ -17,19 +17,34 @@ function validateBookingRequest() {
         alert("The booking date field must contain a valid date with format DD/MM/YYYY.");
         return false;
 	}
-	/*
-    var startTime = document.getElementsByName("startTime")[0].value;
-	if (startTime.length == 10
-		|| bookingDate.charAt(2) != "/"
-		|| bookingDate.charAt(5) != "/"
-		|| isNaN(Date.parse(bookingDate.substr(3, 2) + "/" + bookingDate.substr(0, 2) + "/" + bookingDate.substr(6, 4)))) {
+    var startTime = document.getElementsByName("start_time")[0].value;
+	if (startTime.length != 8
+		|| String(Number(startTime.substr(0, 2))) != startTime.substr(0, 2)
+		|| !(parseInt(startTime.substr(0, 2)) >= 1)
+		|| !(parseInt(startTime.substr(0, 2)) <= 12)
+		|| startTime.charAt(2) != ":"
+		|| String(Number(startTime.substr(3, 2))) != startTime.substr(3, 2)
+		|| !(parseInt(startTime.substr(3, 2)) >= 0)
+		|| !(parseInt(startTime.substr(3, 2)) <= 59)
+		|| startTime.charAt(5) != " "
+		|| (startTime.substr(6, 2) != "AM"
+		&& startTime.substr(6, 2) != "PM")) {
         alert("The start time field must contain a valid time with a valid format (e.g. 10:30 AM).");
         return false;
     }
-    var endTime = document.getElementsByName("endTime")[0].value;
-    if (endTime == "") {
-        alert("The end time is empty");
+    var endTime = document.getElementsByName("end_time")[0].value;
+	if (endTime.length != 8
+		|| String(Number(endTime.substr(0, 2))) != endTime.substr(0, 2)
+		|| !(parseInt(endTime.substr(0, 2)) >= 1)
+		|| !(parseInt(endTime.substr(0, 2)) <= 12)
+		|| endTime.charAt(2) != ":"
+		|| String(Number(endTime.substr(3, 2))) != endTime.substr(3, 2)
+		|| !(parseInt(endTime.substr(3, 2)) >= 0)
+		|| !(parseInt(endTime.substr(3, 2)) <= 59)
+		|| endTime.charAt(5) != " "
+		|| (endTime.substr(6, 2) != "AM"
+		&& endTime.substr(6, 2) != "PM")) {
+        alert("The end time field must contain a valid time with a valid format (e.g. 10:30 AM).");
         return false;
     }
-    */
 }

@@ -14,7 +14,7 @@ get_header(); ?>
 		// CREATE BOOKING REQUEST PAGE
 		
 		$post_content = '
-<form id="booking_form" method="post">
+<form id="booking_form" onsubmit="return validateBookingRequest()" method="post">
 
 	Name of group, project or organisation:<br />
 	<input type="text" name="group_name" value="' . $_POST['group_name'] . '"><br />
