@@ -19,11 +19,11 @@ function validateBookingRequest() {
 	}
     var startTime = document.getElementsByName("start_time")[0].value;
 	if (startTime.length != 8
-		|| String(Number(startTime.substr(0, 2))) != startTime.substr(0, 2)
+		|| isNaN(Number(startTime.substr(0, 2)))
 		|| !(parseInt(startTime.substr(0, 2)) >= 1)
 		|| !(parseInt(startTime.substr(0, 2)) <= 12)
 		|| startTime.charAt(2) != ":"
-		|| String(Number(startTime.substr(3, 2))) != startTime.substr(3, 2)
+		|| isNaN(Number(startTime.substr(3, 2)))
 		|| !(parseInt(startTime.substr(3, 2)) >= 0)
 		|| !(parseInt(startTime.substr(3, 2)) <= 59)
 		|| startTime.charAt(5) != " "
@@ -34,11 +34,11 @@ function validateBookingRequest() {
     }
     var endTime = document.getElementsByName("end_time")[0].value;
 	if (endTime.length != 8
-		|| String(Number(endTime.substr(0, 2))) != endTime.substr(0, 2)
+		|| isNaN(Number(startTime.substr(0, 2)))
 		|| !(parseInt(endTime.substr(0, 2)) >= 1)
 		|| !(parseInt(endTime.substr(0, 2)) <= 12)
 		|| endTime.charAt(2) != ":"
-		|| String(Number(endTime.substr(3, 2))) != endTime.substr(3, 2)
+		|| isNaN(Number(startTime.substr(3, 2)))
 		|| !(parseInt(endTime.substr(3, 2)) >= 0)
 		|| !(parseInt(endTime.substr(3, 2)) <= 59)
 		|| endTime.charAt(5) != " "
