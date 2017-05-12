@@ -9,9 +9,10 @@
 
 // DOES BOOKING REQUEST CLASH WITH ANOTHER BOOKING IN THE CALENDAR?
 
+$booking_date = substr($_POST['booking_date'], 3, 2) . '/' . substr($_POST['booking_date'], 0, 2) . '/' . substr($_POST['booking_date'], 6, 4);
 $events = tribe_get_events(array(
-	'start_date'   => $_POST['booking_date'] . ' ' . $_POST['start_time'],
-	'end_date'     => $_POST['booking_date'] . ' ' . $_POST['end_time']
+	'start_date'   => $booking_date . ' ' . $_POST['start_time'],
+	'end_date'     => $booking_date . ' ' . $_POST['end_time']
 ));
 
 $submission_start_time = $_POST['start_time'];

@@ -123,7 +123,7 @@ get_header(); ?>
 		remove_all_filters("content_save_pre");
 		$new_page_id = wp_insert_post($post_data, $error_obj);
 		
-		include 'booking_request_details.php';
+		include 'booking_request_email_content.php';
 		
 		// EMAIL CONTACT EMAIL ADDRESS
 		
