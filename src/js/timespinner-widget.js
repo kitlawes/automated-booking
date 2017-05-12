@@ -1,9 +1,10 @@
 jQuery(document).ready(function($) {
 
 	$.widget("ui.timespinner", $.ui.spinner, {
+		
 		options: {
 			// seconds
-			step: 60 * 1000,
+			step: 30 * 60 * 1000,
 			// hours
 			page: 60
 		},
@@ -22,6 +23,7 @@ jQuery(document).ready(function($) {
 		_format: function(value) {
 			return Globalize.format(new Date(value), "t");
 		}
+		
 	});
 	
 	$(".timespinner").timespinner();
