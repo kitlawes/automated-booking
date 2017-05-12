@@ -75,8 +75,8 @@ get_header(); ?>
 		$to = $_POST['contact_email'];
 		$subject = 'The Common House';
 		include 'booking_request_details.php';
-		$booking_request_details = get_booking_request_details();
-		$message = 'Your booking request (see below) has been accepted and added to the events calendar at https://automatedbooking.000webhostapp.com/whats-on/.' . $booking_request_details;
+		$subject = get_booking_request_booker_email_subject();
+		$message = get_booking_request_accepted_booker_email_message();
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 		wp_mail($to, $subject, $message, $headers);
 		

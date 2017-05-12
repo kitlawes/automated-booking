@@ -1,4 +1,29 @@
 <?php
+
+	function get_booking_request_booker_email_subject() {
+		return 'The Common House - ' . $_POST['contact_person'] . ' - ' . $_POST['booking_date'] . ' - ' . $_POST['event_title'];
+	}
+
+	function get_booking_request_admin_email_subject() {
+		return 'Booking Request - ' . $_POST['contact_person'] . ' - ' . $_POST['booking_date'] . ' - ' . $_POST['event_title'];
+	}
+
+	function get_booking_request_submitted_booker_email_message() {
+		return 'Thank you for your booking request (see below). You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.' . get_booking_request_details();
+	}
+	
+	function get_booking_request_submitted_admin_email_message() {
+		return 'A booking request has been made (see below). The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.' . get_booking_request_details();
+	}
+	
+	function get_booking_request_accepted_booker_email_message() {
+		return 'Your booking request (see below) has been accepted and added to the events calendar at https://automatedbooking.000webhostapp.com/whats-on/.' . get_booking_request_details();
+	}
+	
+	function get_booking_request_rejected_booker_email_message() {
+		return 'Your booking request (see below) has been rejected. You can make another booking request at https://automatedbooking.000webhostapp.com/index.php/book-the-space/.' . get_booking_request_details();
+	}
+
 	function get_booking_request_details() {
 		$booking_request_details = '
 
@@ -44,4 +69,5 @@ Do you plan to use the projector:
 		';
 		return $booking_request_details;
 	}
+	
 ?>

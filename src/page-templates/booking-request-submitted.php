@@ -120,21 +120,20 @@ get_header(); ?>
 		$new_page_id = wp_insert_post($post_data, $error_obj);
 		
 		include 'booking_request_details.php';
-		$booking_request_details = get_booking_request_details();
 		
 		// EMAIL CONTACT EMAIL ADDRESS
 		
 		$to = $_POST['contact_email'];
-		$subject = 'The Common House';
-		$message = 'Thank you for your booking request (see below). You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.' . $booking_request_details;
+		$subject = get_booking_request_booker_email_subject();
+		$message = get_booking_request_submitted_booker_email_message();
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 		wp_mail($to, $subject, $message, $headers);
 		
 		// EMAIL ADMIN EMAIL ADDRESS
 		
 		$to = 'automatedbooking@gmail.com';
-		$subject = 'Booking Request';
-		$message = 'A booking request has been made (see below). The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.' . $booking_request_details;
+		$subject = get_booking_request_admin_email_subject();
+		$message = get_booking_request_submitted_admin_email_message();
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 		wp_mail($to, $subject, $message, $headers);
 		

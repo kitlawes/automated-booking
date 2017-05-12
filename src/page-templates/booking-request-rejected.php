@@ -23,10 +23,9 @@ get_header(); ?>
 		// EMAIL CONTACT EMAIL ADDRESS
 		
 		$to = $_POST['contact_email'];
-		$subject = 'The Common House';
 		include 'booking_request_details.php';
-		$booking_request_details = get_booking_request_details();
-		$message = 'Your booking request (see below) has been rejected. You can make another booking request at https://automatedbooking.000webhostapp.com/index.php/book-the-space/.' . $booking_request_details;
+		$subject = get_booking_request_booker_email_subject();
+		$message = get_booking_request_rejected_booker_email_message();
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 		wp_mail($to, $subject, $message, $headers);
 		
