@@ -81,6 +81,10 @@ get_header(); ?>
 	<input class="narrow_element" type="checkbox" name="projector_use" ' . ($_POST['projector_use'] == 'on' ? ' checked' : '') . '><br />
 	<br />
 
+	Do you plan to have amplified sound:<br />
+	<input class="narrow_element" type="checkbox" name="amplified_sound_use" ' . ($_POST['amplified_sound_use'] == 'on' ? ' checked' : '') . '><br />
+	<br />
+
 	<button class="narrow_element" type="submit" formaction="/process-booking-request-admin">Accept Booking Request</button>
 	<button class="narrow_element" type="submit" formaction="/booking-request-rejected">Reject Booking Request</button>
 

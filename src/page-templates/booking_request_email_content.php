@@ -65,6 +65,9 @@ End time (please include clean-up time in your booking):
 Do you plan to use the projector:
 ' . ($_POST['projector_use'] == 'on' ? 'Yes' : 'No') . '
 
+Do you plan to have amplified sound:
+' . ($_POST['amplified_sound_use'] == 'on' ? 'Yes' : 'No') . '
+
 *Please note that priority is given to groups/projects that don’t have access to other spaces (eg universities etc) and to those that do organising/campaigning/political work.
 		';
 		return $booking_request_details;
