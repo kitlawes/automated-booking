@@ -77,7 +77,7 @@ get_header(); ?>
 		include 'booking_request_email_content.php';
 		$subject = get_booking_request_booker_email_subject();
 		$message = get_booking_request_accepted_booker_email_message();
-		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+		$headers[] = 'From: The Common House <automatedbooking@gmail.com>';
 		wp_mail($to, $subject, $message, $headers);
 		
 	?>

@@ -130,7 +130,7 @@ get_header(); ?>
 		$to = $_POST['contact_email'];
 		$subject = get_booking_request_booker_email_subject();
 		$message = get_booking_request_submitted_booker_email_message();
-		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
+		$headers[] = 'From: The Common House <automatedbooking@gmail.com>';
 		wp_mail($to, $subject, $message, $headers);
 		
 		// EMAIL ADMIN EMAIL ADDRESS
@@ -145,7 +145,7 @@ get_header(); ?>
 	
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
-		
+			
 			<?php while ( have_posts() ) : the_post(); ?>
 				<?php get_template_part( 'content', 'page' ); ?>
 				<?php comments_template( '', true ); ?>

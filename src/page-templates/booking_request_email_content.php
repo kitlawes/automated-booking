@@ -27,6 +27,8 @@
 	function get_booking_request_details() {
 		$booking_request_details = '
 
+
+
 Name of group, project or organisation:
 ' . $_POST['group_name'] . '
 
