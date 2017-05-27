@@ -137,7 +137,7 @@ get_header(); ?>
 		
 		$to = 'automatedbooking@gmail.com';
 		$subject = get_booking_request_admin_email_subject();
-		$message = get_booking_request_submitted_admin_email_message();
+		$message = get_booking_request_submitted_admin_email_message($new_page_id);
 		$headers[] = 'From: The Common House <wordpress@automatedbooking.000webhostapp.com>';
 		wp_mail($to, $subject, $message, $headers);
 		

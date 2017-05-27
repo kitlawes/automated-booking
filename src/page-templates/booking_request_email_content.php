@@ -12,7 +12,7 @@
 		return 'Thank you for your booking request (see below). You will receive an e-mail regarding acceptance of your booking request once it has been reviewed.' . get_booking_request_details();
 	}
 	
-	function get_booking_request_submitted_admin_email_message() {
+	function get_booking_request_submitted_admin_email_message($new_page_id) {
 		return 'A booking request has been made (see below). The booking request can be accepted or rejected at ' . get_permalink($new_page_id) . '.' . get_booking_request_details();
 	}
 	

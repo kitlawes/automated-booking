@@ -52,5 +52,15 @@ function validateBookingRequest() {
         alert("The end time field must contain a valid time with a valid format (e.g. 10:30 AM).");
         return false;
     }
+	
+	if (startTime.substr(startTime.indexOf(" ") + 1, 2) == "PM"
+		&& endTime.substr(endTime.indexOf(" ") + 1, 2) == "AM"
+		|| startTime.substr(startTime.indexOf(" ") + 1, 2) == endTime.substr(endTime.indexOf(" ") + 1, 2)
+		&& (parseInt(startTime.substr(0, startTime.indexOf(":"))) % 12 > parseInt(endTime.substr(0, endTime.indexOf(":"))) % 12
+		|| parseInt(startTime.substr(0, startTime.indexOf(":"))) == parseInt(endTime.substr(0, endTime.indexOf(":")))
+		&& parseInt(startTime.substr(startTime.indexOf(":") + 1, 2)) >= parseInt(endTime.substr(endTime.indexOf(":") + 1, 2)))) {
+        alert("The event start time must be before the event end time.");
+        return false;
+    }
     
 }
